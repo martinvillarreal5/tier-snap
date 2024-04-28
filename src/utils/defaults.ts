@@ -12,6 +12,7 @@ export const defaultColorOptions: ColorOption[] = [
 
 export const defaultTableConfig: TierTableConfig = {
   rowColor: '#1a1a17',
+  snapColor: '#242222',
 };
 
 export const defaultTemplateTable: TierTable = {

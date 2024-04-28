@@ -15,4 +15,5 @@ export interface TierTableRow {
 
 export interface TierTableConfig {
   rowColor: string;
+  snapColor: string;
 }
