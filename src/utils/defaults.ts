@@ -2,27 +2,35 @@ import { ColorOption, TierPallete } from '../types/tier-pallete';
 import { TierTable, TierTableConfig } from '../types/tier-table';
 
 export const defaultColorOptions: ColorOption[] = [
-  { color: '#ff7f7f', order: 0 },
-  { color: '#ffbf7f', order: 1 },
-  { color: '#ffdf7f', order: 2 },
-  { color: '#ffff7f', order: 3 },
-  { color: '#bfff7f', order: 4 },
-  { color: '#7fff7f', order: 5 },
+  { color: '#ff7f7f' },
+  { color: '#ffbf7f' },
+  { color: '#ffdf7f' },
+  { color: '#ffff7f' },
+  { color: '#bfff7f' },
+  { color: '#7fff7f' },
 ];
 
 export const defaultTableConfig: TierTableConfig = {
   rowColor: '#1a1a17',
 };
 
-export const defaultTable: TierTable = {
+export const defaultTemplateTable: TierTable = {
   config: defaultTableConfig,
   rows: [
-    { ...defaultColorOptions[0], title: 'S' },
-    { ...defaultColorOptions[1], title: 'A' },
-    { ...defaultColorOptions[2], title: 'B' },
-    { ...defaultColorOptions[3], title: 'C' },
-    { ...defaultColorOptions[4], title: 'D' },
-    { ...defaultColorOptions[5], title: 'E' },
+    {
+      ...defaultColorOptions[0],
+      title: 'S',
+      snaps: [
+        {
+          title: 'example snap',
+        },
+      ],
+    },
+    { ...defaultColorOptions[1], title: 'A', snaps: [] },
+    { ...defaultColorOptions[2], title: 'B', snaps: [] },
+    { ...defaultColorOptions[3], title: 'C', snaps: [] },
+    { ...defaultColorOptions[4], title: 'D', snaps: [] },
+    { ...defaultColorOptions[5], title: 'E', snaps: [] },
   ],
 };
 

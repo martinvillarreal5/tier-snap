@@ -3,10 +3,14 @@ export interface TierTable {
   config: TierTableConfig;
 }
 
+export interface Snap {
+  title: string;
+}
+
 export interface TierTableRow {
   color: string;
   title?: string;
-  order: number;
+  snaps: Snap[];
 }
 
 export interface TierTableConfig {
