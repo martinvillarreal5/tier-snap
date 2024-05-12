@@ -3,17 +3,20 @@ export interface TierTable {
   config: TierTableConfig;
 }
 
-export interface Snap {
+export interface TierTableConfig {
+  title: string;
+  rowColor: string;
+  snapColor: string;
+}
+
+export interface Item {
+  id: string;
+  rowId: string;
   title: string;
 }
 
 export interface TierTableRow {
+  id: string;
   color: string;
   title?: string;
-  snaps: Snap[];
-}
-
-export interface TierTableConfig {
-  rowColor: string;
-  snapColor: string;
 }
