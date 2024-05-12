@@ -17,10 +17,13 @@ module.exports = {
     'plugin:tailwindcss/recommended',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'],
   rules: {
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-empty-interface': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
   },
 };
