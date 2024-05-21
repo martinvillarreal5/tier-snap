@@ -1,14 +1,5 @@
 import { useTierStore } from '@/hooks/useTierStore';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '../ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
 
 export function NewRowModalButton() {
   const createRow = useTierStore.use.createRow();
@@ -25,7 +16,9 @@ export function NewRowModalButton() {
           <DialogTitle>Add new Row</DialogTitle>
         </DialogHeader>
         <div className="flex items-center space-x-2">
-          <button className="flex cursor-pointer gap-2 rounded bg-zinc-700 px-4 py-2 hover:bg-zinc-800">
+          <button
+            className="flex cursor-pointer gap-2 rounded bg-zinc-700 px-4 py-2 hover:bg-zinc-800"
+            onClick={createRow}>
             Create
           </button>
         </div>
