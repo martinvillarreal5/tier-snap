@@ -9,7 +9,7 @@ interface RowHeadProps {
 export function RowHead(props: RowHeadProps) {
   return props.editingTitle ? (
     <div
-      className="flex size-28 shrink-0 cursor-grab items-center justify-center text-black"
+      className="flex h-full min-h-28 w-28 shrink-0 items-center justify-center text-black"
       style={{ backgroundColor: props.color }}>
       <input
         type={'text'}
@@ -29,7 +29,7 @@ export function RowHead(props: RowHeadProps) {
   ) : (
     <div
       onClick={() => props.setEditingTitle(true)}
-      className="flex size-28 shrink-0 cursor-grab items-center justify-center text-black"
+      className="flex h-full min-h-28 w-28 shrink-0 cursor-grab items-center justify-center text-black"
       style={{ backgroundColor: props.color }}>
       {props.title}
     </div>

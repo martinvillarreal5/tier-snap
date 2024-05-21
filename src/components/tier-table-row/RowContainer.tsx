@@ -1,18 +1,15 @@
-import { useSortable } from '@dnd-kit/sortable';
-import { Item, type TierTableRow } from '../../types/tier-table';
+import { SortableContext, useSortable } from '@dnd-kit/sortable';
+import { TierItem, type TierRow } from '../../types/tier-types';
 import { RowActions } from './RowActions';
 import { RowHead } from './RowHead';
 import { CSS } from '@dnd-kit/utilities';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ItemComponent } from '../snap/ItemComponent';
+import { useTierStore } from '@/hooks/useTierStore';
 
 interface RowContainerProps {
-  row: TierTableRow;
-  removeRow: (id: string) => void;
-  updateRowTitle: (id: string, value: string) => void;
-  items: Item[];
-  createItem: (rowId: string) => void;
-  updateItemTitle: (id: string, value: string) => void;
+  row: TierRow;
+  items: TierItem[];
 }
 
 export function RowContainer(props: RowContainerProps) {
@@ -25,18 +22,17 @@ export function RowContainer(props: RowContainerProps) {
     },
     disabled: editingTitle,
   });
+  const itemsIds = useMemo(() => props.items.map((item) => item.id), [props.items]);
+  const updateRowTitle = useTierStore.use.updateRowTitle();
 
   const sortableStyle: React.CSSProperties = {
     transition,
     transform: CSS.Transform.toString(transform),
-    /* boxShadow: isDragging
-      ? `var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) ${props.row.color}`
-      : 'none', */
   };
 
   const handleUpdateRowTitle = (value: string) => {
     console.log('row change value: ', value);
-    props.updateRowTitle(props.row.id, value);
+    updateRowTitle(props.row.id, value);
   };
 
   if (isDragging) {
@@ -58,9 +54,11 @@ export function RowContainer(props: RowContainerProps) {
 
       {/* Row body/items */}
       <div className="flex h-fit w-[calc(6rem*8+9*0.25rem)] flex-wrap justify-start gap-1 p-1 text-white">
-        {props.items?.map((item) => <ItemComponent key={item.id} item={item} updateTitle={props.updateItemTitle} />)}
+        <SortableContext items={itemsIds}>
+          {props.items?.map((item) => <ItemComponent key={item.id} item={item} />)}
+        </SortableContext>
       </div>
-      <RowActions removeRowFn={props.removeRow} rowId={props.row.id} />
+      <RowActions rowId={props.row.id} />
     </div>
   );
 }

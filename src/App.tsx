@@ -1,4 +1,3 @@
-import './App.css';
 import { TierContainer } from './components/TierContainer';
 
 function App() {

@@ -1,22 +1,25 @@
-export interface TierTable {
-  rows: TierTableRow[];
-  config: TierTableConfig;
-}
-
 export interface TierTableConfig {
   title: string;
   rowColor: string;
   snapColor: string;
 }
 
-export interface Item {
+export interface TierItem {
   id: string;
   rowId: string;
   title: string;
 }
 
-export interface TierTableRow {
+export interface TierRow {
   id: string;
   color: string;
   title?: string;
+}
+
+export interface TierPalleteOption {
+  color: string;
+}
+
+export interface TierPallete {
+  colors: TierPalleteOption[];
 }
