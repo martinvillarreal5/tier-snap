@@ -21,12 +21,12 @@ export const defaultTierPallete: TierPallete = {
 export const defaultTableConfig: TierTableConfig = {
   rowColor: '#1a1a17',
   snapColor: '#242222',
-  title: 'Example Tier Table',
+  title: 'Tier',
 };
 
 export const getExampleItem = (rowId: string): TierItem => {
   return {
-    title: 'example',
+    title: '',
     id: crypto.randomUUID(),
     rowId: rowId,
   };
