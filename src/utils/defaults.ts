@@ -50,7 +50,7 @@ export const getDefaultAlbumRows = (): TierRow[] => {
     { ...defaultColorOptions[2], id: crypto.randomUUID(), title: 'Good' },
     { ...defaultColorOptions[3], id: crypto.randomUUID(), title: 'Ok' },
     { ...defaultColorOptions[4], id: crypto.randomUUID(), title: 'Meh' },
-    { ...defaultColorOptions[5], id: crypto.randomUUID(), title: 'Bad shit' },
-    { ...defaultColorOptions[9], id: crypto.randomUUID(), title: 'WTF' },
+    { ...defaultColorOptions[7], id: crypto.randomUUID(), title: 'Bad shit' },
+    { ...defaultColorOptions[10], id: crypto.randomUUID(), title: 'WTF' },
   ];
 };
