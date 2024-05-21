@@ -26,4 +26,13 @@ module.exports = {
     '@typescript-eslint/no-empty-interface': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
   },
+  overrides: [
+    {
+      files: ['**/components/ui/*.tsx'],
+      rules: {
+        'react/prop-types': [2, { ignore: ['className'] }],
+        'react-refresh/only-export-components': 'off',
+      },
+    },
+  ],
 };

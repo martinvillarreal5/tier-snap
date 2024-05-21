@@ -13,9 +13,9 @@ export function RowHead(props: RowHeadProps) {
       style={{ backgroundColor: props.color }}>
       <input
         type={'text'}
-        className="flex h-fit w-full rounded-md bg-transparent
-         p-0 text-center shadow-sm transition-colors
-         focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-fit w-full rounded-md border-none
+         bg-transparent p-0 text-center
+         transition-colors focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
         value={props.title}
         onChange={(e) => props.handleUpdateRowTitle(e.target.value)}
         autoFocus
