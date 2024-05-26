@@ -14,7 +14,7 @@ import { ItemComponent } from './snap/ItemComponent';
 export function TierContainer() {
   const { rows, rowsIds, getRowItems } = useStoreRows();
 
-  const tableTitle = useTierStore.use.tableConfig().title;
+  const tableTitle = useTierStore.use.title();
 
   const { onDragEnd, onDragStart, onDragOver, sensors, activeRow, activeItem } = useTierRowDrag();
 
@@ -39,7 +39,9 @@ export function TierContainer() {
             </TierTableContainer>
           </SortableContext>
           <DragOverlayPortal>
-            {activeRow && <RowContainer key={activeRow.id} row={activeRow} items={getRowItems(activeRow.id)} />}
+            {activeRow && (
+              <RowContainer key={activeRow.id} row={activeRow} items={getRowItems(activeRow.id)} />
+            )}
             {activeItem && <ItemComponent key={activeItem.id} item={activeItem} />}
           </DragOverlayPortal>
         </DndContext>

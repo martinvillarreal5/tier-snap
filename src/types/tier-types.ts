@@ -1,5 +1,4 @@
-export interface TierTableConfig {
-  title: string;
+export interface TierConfig {
   rowColor: string;
   snapColor: string;
 }
@@ -10,16 +9,20 @@ export interface TierItem {
   title: string;
 }
 
-export interface TierRow {
-  id: string;
+export interface TierPreset {
+  title: string;
+  rows: TierPresetRow[];
+}
+
+export interface TierPresetRow {
   color: string;
   title?: string;
 }
 
-export interface TierPalleteOption {
-  color: string;
+export interface TierRow extends TierPresetRow {
+  id: string;
 }
 
-export interface TierPallete {
-  colors: TierPalleteOption[];
+export interface TierPalleteOption {
+  color: string;
 }

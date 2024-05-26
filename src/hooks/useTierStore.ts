@@ -1,18 +1,22 @@
-import { TierItem, TierRow, TierTableConfig } from '@/types/tier-types';
+import { TierColor } from '@/types/tier-colors';
+import type { TierPreset, TierItem, TierRow, TierConfig } from '@/types/tier-types';
 import { createSelectors } from '@/utils/createSelectors';
-import { defaultTableConfig, getDefaultAlbumRows, getExampleItem } from '@/utils/defaults';
+import { defaultTierConfig } from '@/utils/defaults';
+import { generateExampleItem, generateTierRows } from '@/utils/generators';
+import { defaultTierPreset } from '@/utils/tier-presets';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 export interface TierStoreState {
   rows: TierRow[];
   items: TierItem[];
-  tableConfig: TierTableConfig;
+  title: string;
+  tierConfig: TierConfig;
 }
 
 export interface TierStoreActions {
   createRow: (rowCreationOptions?: RowCreationOptions) => void;
-  reset: () => void;
+  reset: (preset?: DeepReadonly<TierPreset>, title?: string) => void;
   updateRowTitle: (id: string, value: string) => void;
   removeRow: (id: string) => void;
   setRows: (rows: TierRow[]) => void;
@@ -21,10 +25,17 @@ export interface TierStoreActions {
   setItems: (items: TierItem[]) => void;
 }
 
-const defaultState: TierStoreState = {
-  rows: getDefaultAlbumRows(),
-  items: [],
-  tableConfig: defaultTableConfig,
+const generateTierStoreStateFromPreset = (
+  preset?: DeepReadonly<TierPreset>,
+  title?: string
+): TierStoreState => {
+  const presetToUse = preset ? { ...preset } : { ...defaultTierPreset };
+  return {
+    rows: generateTierRows(presetToUse.rows),
+    title: title ?? presetToUse.title,
+    items: [],
+    tierConfig: defaultTierConfig,
+  };
 };
 
 interface RowCreationOptions {
@@ -37,20 +48,20 @@ export const baseTierStore = create<TierStoreState & TierStoreActions>()(
     (set) => ({
       //state
 
-      ...defaultState,
+      ...generateTierStoreStateFromPreset(),
 
       //actions
 
       // ! completely restore state to default values
-      reset: () => {
-        set(defaultState);
+      reset: (preset?: DeepReadonly<TierPreset>, title?: string) => {
+        set(generateTierStoreStateFromPreset(preset, title));
       },
 
       createRow: (rowCreationOptions?: RowCreationOptions) => {
         const newRow: TierRow = {
           id: crypto.randomUUID(),
           title: rowCreationOptions?.title ? rowCreationOptions?.title : 'New',
-          color: rowCreationOptions?.color ? rowCreationOptions?.color : '#fafafa',
+          color: rowCreationOptions?.color ? rowCreationOptions?.color : TierColor.WHITE,
         };
 
         set((state) => ({ rows: [...state.rows, newRow] }));
@@ -81,7 +92,7 @@ export const baseTierStore = create<TierStoreState & TierStoreActions>()(
       setRows: (rows: TierRow[]) => set(() => ({ rows: rows })),
 
       createItemInRow: (rowId: string) => {
-        const newItem = getExampleItem(rowId);
+        const newItem = generateExampleItem(rowId);
         set((state) => ({ items: [...state.items, newItem] }));
       },
 

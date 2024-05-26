@@ -11,8 +11,6 @@ export function useStoreRows() {
   const items = useTierStore.use.items();
 
   const getRowItems = (rowId: string) => {
-    console.log(items);
-    console.log(rowId);
     return items.filter((item) => item.rowId === rowId);
   };
 
