@@ -3,23 +3,26 @@ export interface TierConfig {
   snapColor: string;
 }
 
-export interface TierItem {
-  id: string;
-  rowId: string;
+export interface BaseItem {
   title: string;
+  rowId: string;
+}
+
+export interface TierItem extends BaseItem {
+  id: string;
 }
 
 export interface TierPreset {
   title: string;
-  rows: TierPresetRow[];
+  rows: BaseRow[];
 }
 
-export interface TierPresetRow {
+export interface BaseRow {
   color: string;
   title?: string;
 }
 
-export interface TierRow extends TierPresetRow {
+export interface TierRow extends BaseRow {
   id: string;
 }
 

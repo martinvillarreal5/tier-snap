@@ -4,7 +4,7 @@ import { RowActions } from './RowActions';
 import { RowHead } from './RowHead';
 import { CSS } from '@dnd-kit/utilities';
 import { useMemo, useState } from 'react';
-import { ItemComponent } from '../snap/ItemComponent';
+import { ItemComponent } from '../tier-item/ItemComponent';
 import { useTierStore } from '@/hooks/useTierStore';
 
 interface RowContainerProps {
@@ -23,7 +23,7 @@ export function RowContainer(props: RowContainerProps) {
     disabled: editingTitle,
   });
   const itemsIds = useMemo(() => props.items.map((item) => item.id), [props.items]);
-  const updateRowTitle = useTierStore.use.updateRowTitle();
+  const updateRowTitle = useTierStore.use.updateRow();
 
   const sortableStyle: React.CSSProperties = {
     transition,
@@ -40,7 +40,10 @@ export function RowContainer(props: RowContainerProps) {
   }
 
   return (
-    <div ref={setNodeRef} style={sortableStyle} className="flex w-full flex-row justify-start bg-zinc-900">
+    <div
+      ref={setNodeRef}
+      style={sortableStyle}
+      className="flex w-full flex-row justify-start bg-zinc-900">
       {/* Row head */}
       <div {...attributes} {...listeners}>
         <RowHead

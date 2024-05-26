@@ -1,6 +1,6 @@
 import { SortableContext } from '@dnd-kit/sortable';
 import { TierTableContainer } from './TierTable';
-import { RowContainer } from './tier-table-row/RowContainer';
+import { RowContainer } from './tier-row/RowContainer';
 import { TierHeader } from './TierHeader';
 import { TierTooling } from './TierTooling';
 import { DndContext } from '@dnd-kit/core';
@@ -9,7 +9,7 @@ import { DragOverlayPortal } from './common/DragOverlayPortal';
 import { useTierStore } from '@/hooks/useTierStore';
 import { useTierRowDrag } from '@/hooks/useRowDrag';
 import { useStoreRows } from '@/hooks/useTierStoreRows';
-import { ItemComponent } from './snap/ItemComponent';
+import { ItemComponent } from './tier-item/ItemComponent';
 
 export function TierContainer() {
   const { rows, rowsIds, getRowItems } = useStoreRows();

@@ -10,7 +10,7 @@ interface ItemComponentProps {
 
 export function ItemComponent(props: ItemComponentProps) {
   const [editingTitle, setEditingTitle] = useState<boolean>(false);
-  const updateItemTitle = useTierStore.use.updateItemTitle();
+  const updateItemTitle = useTierStore.use.updateItem();
 
   const { setNodeRef, attributes, listeners, transform, transition, isDragging } = useSortable({
     id: props.item.id,
@@ -24,9 +24,12 @@ export function ItemComponent(props: ItemComponentProps) {
   const sortableStyle: React.CSSProperties = {
     transition,
     transform: CSS.Transform.toString(transform),
-    /* boxShadow: isDragging
-      ? `var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) ${props.row.color}`
-      : 'none', */
+  };
+
+  const handleUpdateItemTitle = (newTitle: string) => {
+    updateItemTitle(props.item.id, {
+      title: newTitle,
+    });
   };
 
   if (isDragging) {
@@ -56,7 +59,7 @@ export function ItemComponent(props: ItemComponentProps) {
             bg-transparent p-0 text-center shadow-sm
             transition-colors focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           value={props.item.title}
-          onChange={(e) => updateItemTitle(props.item.id, e.target.value)}
+          onChange={(e) => handleUpdateItemTitle(e.target.value)}
           autoFocus
           onBlur={() => setEditingTitle(false)}
           onKeyDown={(e) => {
@@ -64,7 +67,9 @@ export function ItemComponent(props: ItemComponentProps) {
           }}
         />
       ) : (
-        <p className="max-h-[6.5rem] max-w-[6.5rem] text-pretty break-words text-center">{props.item.title}</p>
+        <p className="max-h-[6.5rem] max-w-[6.5rem] text-pretty break-words text-center">
+          {props.item.title}
+        </p>
       )}
     </div>
   );
