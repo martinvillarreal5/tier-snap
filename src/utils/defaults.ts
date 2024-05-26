@@ -1,4 +1,10 @@
-import { TierItem, TierTableConfig, TierRow, TierPalleteOption, TierPallete } from '../types/tier-types';
+import {
+  TierItem,
+  TierTableConfig,
+  TierRow,
+  TierPalleteOption,
+  TierPallete,
+} from '../types/tier-types';
 
 export const defaultColorOptions: TierPalleteOption[] = [
   { color: '#ff7f7f' },
@@ -12,6 +18,7 @@ export const defaultColorOptions: TierPalleteOption[] = [
   { color: '#7f7fff' },
   { color: '#ff7fff' },
   { color: '#bf7fbf' },
+  { color: '#fafafa' },
 ];
 
 export const defaultTierPallete: TierPallete = {
@@ -45,12 +52,12 @@ export const getDefaultRows = (): TierRow[] => {
 
 export const getDefaultAlbumRows = (): TierRow[] => {
   return [
-    { ...defaultColorOptions[0], id: crypto.randomUUID(), title: 'God Tier' },
+    { ...defaultColorOptions[0], id: crypto.randomUUID(), title: 'Bruh' },
     { ...defaultColorOptions[1], id: crypto.randomUUID(), title: 'Slaps' },
     { ...defaultColorOptions[2], id: crypto.randomUUID(), title: 'Good' },
     { ...defaultColorOptions[3], id: crypto.randomUUID(), title: 'Ok' },
     { ...defaultColorOptions[4], id: crypto.randomUUID(), title: 'Meh' },
-    { ...defaultColorOptions[7], id: crypto.randomUUID(), title: 'Bad shit' },
+    { ...defaultColorOptions[7], id: crypto.randomUUID(), title: 'Bad' },
     { ...defaultColorOptions[10], id: crypto.randomUUID(), title: 'WTF' },
   ];
 };

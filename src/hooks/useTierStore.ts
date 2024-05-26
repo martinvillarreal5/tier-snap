@@ -11,7 +11,7 @@ export interface TierStoreState {
 }
 
 export interface TierStoreActions {
-  createRow: () => void;
+  createRow: (rowCreationOptions?: RowCreationOptions) => void;
   reset: () => void;
   updateRowTitle: (id: string, value: string) => void;
   removeRow: (id: string) => void;
@@ -27,6 +27,11 @@ const defaultState: TierStoreState = {
   tableConfig: defaultTableConfig,
 };
 
+interface RowCreationOptions {
+  color?: string;
+  title?: string;
+}
+
 export const baseTierStore = create<TierStoreState & TierStoreActions>()(
   persist(
     (set) => ({
@@ -41,11 +46,11 @@ export const baseTierStore = create<TierStoreState & TierStoreActions>()(
         set(defaultState);
       },
 
-      createRow: () => {
+      createRow: (rowCreationOptions?: RowCreationOptions) => {
         const newRow: TierRow = {
           id: crypto.randomUUID(),
-          title: 'New',
-          color: '#a1a1aa',
+          title: rowCreationOptions?.title ? rowCreationOptions?.title : 'New',
+          color: rowCreationOptions?.color ? rowCreationOptions?.color : '#fafafa',
         };
 
         set((state) => ({ rows: [...state.rows, newRow] }));
