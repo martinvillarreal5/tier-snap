@@ -23,7 +23,7 @@ export function RowContainer(props: RowContainerProps) {
     disabled: editingTitle,
   });
   const itemsIds = useMemo(() => props.items.map((item) => item.id), [props.items]);
-  const updateRowTitle = useTierStore.use.updateRow();
+  const updateRow = useTierStore.use.updateRow();
 
   const sortableStyle: React.CSSProperties = {
     transition,
@@ -31,8 +31,7 @@ export function RowContainer(props: RowContainerProps) {
   };
 
   const handleUpdateRowTitle = (value: string) => {
-    console.log('row change value: ', value);
-    updateRowTitle(props.row.id, value);
+    updateRow( props.row.id, {title: value});
   };
 
   if (isDragging) {
