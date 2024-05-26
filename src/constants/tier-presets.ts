@@ -1,7 +1,7 @@
 import type { TierPreset } from '@/types/tier-types';
 import { TierColor } from '@/types/tier-colors';
 
-export const albumTierPreset: DeepReadonly<TierPreset> = {
+export const songsPreset: DeepReadonly<TierPreset> = {
   title: 'Album Songs',
   rows: [
     { color: TierColor.RED, title: 'Bruh' },
@@ -14,7 +14,7 @@ export const albumTierPreset: DeepReadonly<TierPreset> = {
   ],
 };
 
-export const defaultTierPreset: DeepReadonly<TierPreset> = {
+export const defaultPreset: DeepReadonly<TierPreset> = {
   title: 'Generic',
   rows: [
     { color: TierColor.RED, title: 'S' },
@@ -26,16 +26,23 @@ export const defaultTierPreset: DeepReadonly<TierPreset> = {
   ],
 };
 
-export const extendedTierPreset: DeepReadonly<TierPreset> = {
+export const defaultPlusPreset: DeepReadonly<TierPreset> = {
+  title: 'Generic Plus',
+  rows: [...defaultPreset.rows, { color: TierColor.SKY, title: 'F' }],
+};
+
+export const defaultExtendedPreset: DeepReadonly<TierPreset> = {
   title: 'Generic Extended',
   rows: [
-    { color: TierColor.RED, title: 'S' },
-    { color: TierColor.ORANGE, title: 'A' },
-    { color: TierColor.AMBER, title: 'B' },
-    { color: TierColor.YELLOW, title: 'C' },
-    { color: TierColor.LIME, title: 'D' },
-    { color: TierColor.GREEN, title: 'E' },
+    ...defaultPreset.rows,
     { color: TierColor.CYAN, title: 'F' },
     { color: TierColor.SKY, title: 'G' },
   ],
 };
+
+export const allPresets: DeepReadonly<TierPreset[]> = [
+  defaultPreset,
+  defaultPlusPreset,
+  defaultExtendedPreset,
+  songsPreset,
+];

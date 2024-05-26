@@ -1,9 +1,9 @@
 import { TierColor } from '@/types/tier-colors';
 import type { TierPreset, TierItem, TierRow, TierConfig } from '@/types/tier-types';
 import { createSelectors } from '@/utils/createSelectors';
-import { defaultTierConfig } from '@/utils/defaults';
+import { defaultTierConfig } from '@/constants/defaults';
 import { generateExampleItem, generateTierRows } from '@/utils/generators';
-import { defaultTierPreset } from '@/utils/tier-presets';
+import { defaultPreset } from '@/constants/tier-presets';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
@@ -29,7 +29,7 @@ const generateTierStoreStateFromPreset = (
   preset?: DeepReadonly<TierPreset>,
   title?: string
 ): TierStoreState => {
-  const presetToUse = preset ? { ...preset } : { ...defaultTierPreset };
+  const presetToUse = preset ? { ...preset } : { ...defaultPreset };
   return {
     rows: generateTierRows(presetToUse.rows),
     title: title ?? presetToUse.title,
@@ -52,7 +52,6 @@ export const baseTierStore = create<TierStoreState & TierStoreActions>()(
 
       //actions
 
-      // ! completely restore state to default values
       reset: (preset?: DeepReadonly<TierPreset>, title?: string) => {
         set(generateTierStoreStateFromPreset(preset, title));
       },
