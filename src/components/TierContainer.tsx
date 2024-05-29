@@ -1,4 +1,4 @@
-import { SortableContext } from '@dnd-kit/sortable';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { TierTableContainer } from './TierTable';
 import { RowContainer } from './tier-row/RowContainer';
 import { TierHeader } from './TierHeader';
@@ -31,7 +31,7 @@ export function TierContainer() {
             restrictToWindowEdges,
           ]}
           sensors={sensors}>
-          <SortableContext items={rowsIds}>
+          <SortableContext items={rowsIds} strategy={verticalListSortingStrategy}>
             <TierTableContainer>
               {rows.map((row) => (
                 <RowContainer key={row.id} row={row} items={getRowItems(row.id)} />
