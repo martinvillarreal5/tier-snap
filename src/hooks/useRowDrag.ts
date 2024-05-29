@@ -29,7 +29,6 @@ export function useTierRowDrag() {
   );
 
   const onDragStart = (event: DragStartEvent) => {
-    console.log('drag start', event);
     if (event.active.data.current?.type === 'Row') {
       setActiveRow(event.active.data.current.row as TierRow);
       return;
@@ -42,8 +41,6 @@ export function useTierRowDrag() {
   };
 
   const onDragEnd = (event: DragEndEvent) => {
-    console.log('drag end', event);
-
     setActiveItem(null);
     setActiveRow(null);
 
