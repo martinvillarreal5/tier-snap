@@ -24,14 +24,26 @@ Here are some planned features and improvements for TierSnap:
 
 ### Fixes
 
-- [ ] Drag overlay not takig the same space as row when there is more than 1 row of items
+- [x] Drag overlay not takig the same space as row when there is more than 1 row of items
+- [ ] If only one row, with many items, it grows height when dragged
+- [ ] Cant drag row to end if it has many items.
+- [ ] Row title text doesnt wrap
+- [ ] Item title input its buggy as fuck
+- [ ] Create row input doesnt clear when creating row
 - [ ] Weird crash when dragging item over rows with many items
 
 ### Fatures
 
+- [ ] Reset to preset button modal
+- [ ] Row customization button modal
+- [ ] Put image as item background
 - [ ] Spotify Integration
+- [ ] Create custom presets
+- [ ] Create download tier image button
 
 ### Maybe
+
+- [ ] Create export/inport tier as json button
 
 ### Probably Not
 
