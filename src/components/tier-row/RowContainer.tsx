@@ -35,11 +35,9 @@ export function RowContainer(props: RowContainerProps) {
     updateRow(props.row.id, { title: value });
   };
 
-  const calculateRowHeight = () => {
-    const subRowsNumber = Math.ceil(props.items.length / Dimensions.ITEMS_PER_ROW);
-    return subRowsNumber
-      ? `calc((${Dimensions.ITEM_SIZE}rem * ${subRowsNumber}) + (0.25rem * ${subRowsNumber + 1}))`
-      : Dimensions.ROW_HEIGHT + 'rem';
+  const getRowHeight = () => {
+    //TODO cache/memo this
+    return Dimensions.calculateRowHeight(props.items.length) + 'rem';
   };
 
   if (isDragging) {
@@ -49,7 +47,7 @@ export function RowContainer(props: RowContainerProps) {
         ref={setNodeRef}
         style={{
           ...sortableStyle,
-          minHeight: calculateRowHeight(),
+          minHeight: getRowHeight(),
         }}
       />
     );
@@ -58,7 +56,7 @@ export function RowContainer(props: RowContainerProps) {
   return (
     <div
       ref={setNodeRef}
-      style={sortableStyle}
+      style={{ ...sortableStyle, width: Dimensions.calculateRowWidth() + 'rem' }}
       className="flex w-full flex-row justify-start bg-zinc-900">
       {/* Row head */}
       <div {...attributes} {...listeners}>
@@ -72,7 +70,9 @@ export function RowContainer(props: RowContainerProps) {
       </div>
 
       {/* Row body/items */}
-      <div className="flex w-[calc(6.5rem*7+8*0.25rem)] flex-wrap justify-start gap-1 p-1 text-white">
+      <div
+        className="flex flex-wrap justify-start gap-1 p-1 text-white"
+        style={{ width: Dimensions.calculateRowItemsWidth() + 'rem' }}>
         <SortableContext items={itemsIds}>
           {props.items?.map((item) => <ItemComponent key={item.id} item={item} />)}
         </SortableContext>
