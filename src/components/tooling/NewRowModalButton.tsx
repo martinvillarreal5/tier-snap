@@ -13,6 +13,7 @@ import Circle from '@uiw/react-color-circle';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { defaultColorOptions } from '@/constants/defaults';
+import { Button } from '../ui/button';
 
 export function NewRowModalButton() {
   const createRow = useTierStore.use.createRow();
@@ -37,9 +38,9 @@ export function NewRowModalButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="flex cursor-pointer gap-2 rounded bg-zinc-700 px-4 py-2 duration-300 hover:bg-zinc-800">
+        <Button className="gap-2">
           <PlusIcon /> Add row
-        </button>
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="flex items-center justify-center">
@@ -77,12 +78,9 @@ export function NewRowModalButton() {
           </div>
 
           <DialogClose asChild>
-            <button
-              className="flex cursor-pointer gap-2 rounded bg-zinc-700 px-4 py-2 text-white duration-300 hover:bg-zinc-800"
-              type="button"
-              onClick={handleCreateRow}>
+            <Button className="gap-2" onClick={handleCreateRow}>
               Create
-            </button>
+            </Button>
           </DialogClose>
         </div>
       </DialogContent>
