@@ -6,6 +6,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { useMemo, useState } from 'react';
 import { ItemComponent } from '../tier-item/ItemComponent';
 import { useTierStore } from '@/hooks/useTierStore';
+import { Dimensions } from '@/constants/dimensions';
 
 interface RowContainerProps {
   row: TierRow;
@@ -27,15 +28,31 @@ export function RowContainer(props: RowContainerProps) {
 
   const sortableStyle: React.CSSProperties = {
     transition,
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
   };
 
   const handleUpdateRowTitle = (value: string) => {
-    updateRow( props.row.id, {title: value});
+    updateRow(props.row.id, { title: value });
+  };
+
+  const calculateRowHeight = () => {
+    const subRowsNumber = Math.ceil(props.items.length / Dimensions.ITEMS_PER_ROW);
+    return subRowsNumber
+      ? `calc((${Dimensions.ITEM_SIZE}rem * ${subRowsNumber}) + (0.25rem * ${subRowsNumber + 1}))`
+      : Dimensions.ROW_HEIGHT + 'rem';
   };
 
   if (isDragging) {
-    return <div className="h-28 w-full" ref={setNodeRef} style={sortableStyle}></div>;
+    return (
+      <div
+        className="w-full"
+        ref={setNodeRef}
+        style={{
+          ...sortableStyle,
+          minHeight: calculateRowHeight(),
+        }}
+      />
+    );
   }
 
   return (
@@ -55,7 +72,7 @@ export function RowContainer(props: RowContainerProps) {
       </div>
 
       {/* Row body/items */}
-      <div className="flex h-fit w-[calc(6rem*8+9*0.25rem)] flex-wrap justify-start gap-1 p-1 text-white">
+      <div className="flex w-[calc(6.5rem*7+8*0.25rem)] flex-wrap justify-start gap-1 p-1 text-white">
         <SortableContext items={itemsIds}>
           {props.items?.map((item) => <ItemComponent key={item.id} item={item} />)}
         </SortableContext>
