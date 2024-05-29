@@ -22,14 +22,18 @@ Welcome to TierSnap! This project is a web application built with Vite, React, a
 
 Here are some planned features and improvements for TierSnap:
 
-- [ ] **Persist Data**: Implement local storage to save and load tier lists.
-- [ ] **Share Tier Lists**: Add functionality to share tier lists via a unique URL.
-- [ ] **Image Support**: Allow users to upload images for items.
-- [ ] **Custom Themes**: Provide options to customize the look and feel of the application.
-- [ ] **Export**: Enable users to export their tier lists as images or PDFs.
-- [ ] **User Accounts**: Add authentication and user accounts for saving tier lists in the cloud.
-- [ ] **Search and Filter**: Implement search and filter functionality for items and tiers.
-- [ ] **Accessibility**: Improve accessibility features for better user experience.
+### Fixes
+
+- [ ] Drag overlay not takig the same space as row when there is more than 1 row of items
+- [ ] Weird crash when dragging item over rows with many items
+
+### Fatures
+
+- [ ] Spotify Integration
+
+### Maybe
+
+### Probably Not
 
 ## License
 
