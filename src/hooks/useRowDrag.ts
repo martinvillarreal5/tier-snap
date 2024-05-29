@@ -1,5 +1,12 @@
 import { TierItem, TierRow } from '@/types/tier-types';
-import { DragEndEvent, DragOverEvent, DragStartEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import {
+  DragEndEvent,
+  DragOverEvent,
+  DragStartEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 import { useState } from 'react';
 import { useTierStore } from './useTierStore';
 import { arrayMove } from '@dnd-kit/sortable';
