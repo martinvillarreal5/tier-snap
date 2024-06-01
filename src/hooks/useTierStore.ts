@@ -29,6 +29,7 @@ export interface TierStoreActions {
   createItemInRow: (itemInfo: Partial<BaseItem>) => void;
   updateItem: (id: string, itemInfo: Partial<BaseItem>) => void;
   setItems: (items: TierItem[]) => void;
+  removeItem: (id: string) => void;
 }
 
 const generateTierStoreStateFromPreset = (
@@ -99,7 +100,7 @@ export const baseTierStore = create<TierStoreState & TierStoreActions>()(
       updateItem: (id: string, updatedInfo: Partial<BaseItem>) =>
         set((state) => {
           const updatedItems = state.items.map((item) => {
-            if (item.id == id) return item;
+            if (item.id != id) return item;
             return {
               ...item,
               title: updatedInfo.title ?? item.title,
@@ -110,6 +111,15 @@ export const baseTierStore = create<TierStoreState & TierStoreActions>()(
         }),
 
       setItems: (items: TierItem[]) => set(() => ({ items: items })),
+
+      removeItem: (id: string) =>
+        set((state) => {
+          const filteredItems = state.items.filter((item) => item.id !== id);
+
+          return {
+            items: filteredItems,
+          };
+        }),
     }),
     {
       name: 'tier-storage', // name of the item in the storage (must be unique)
