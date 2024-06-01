@@ -1,5 +1,6 @@
 import { useTierStore } from '@/hooks/useTierStore';
 import { Plus as PlusIcon, Settings as SettingsIcon, Trash2 as TrashIcon } from 'lucide-react';
+import { Button } from '../ui/button';
 
 interface RowActionsProp {
   rowId: string;
@@ -17,23 +18,15 @@ export function RowActions(props: RowActionsProp) {
 
   return (
     <div className="flex w-10 flex-col items-end gap-1 p-1 text-white">
-      <button
-        className="flex size-8 cursor-pointer items-center justify-center rounded bg-zinc-700 duration-300 hover:bg-zinc-800"
-        onClick={() => handleCreateItemInRow()}
-        type="button">
+      <Button title="add item" size={'iconSm'} onClick={() => handleCreateItemInRow()}>
         <PlusIcon />
-      </button>
-      <button
-        className="flex size-8 cursor-pointer items-center justify-center rounded bg-zinc-700 duration-300 hover:bg-zinc-800"
-        type="button">
+      </Button>
+      <Button title="row settings" size={'iconSm'}>
         <SettingsIcon />
-      </button>
-      <button
-        className="flex size-8 cursor-pointer items-center justify-center rounded bg-zinc-700 duration-300 hover:bg-zinc-800"
-        onClick={() => removeRow(props.rowId)}
-        type="button">
+      </Button>
+      <Button title="delete row" size={'iconSm'} onClick={() => removeRow(props.rowId)}>
         <TrashIcon />
-      </button>
+      </Button>
     </div>
   );
 }
