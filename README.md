@@ -7,6 +7,7 @@ Welcome to TierSnap! This project is a web application built with Vite and React
 - [Features](#features)
 - [Technologies](#technologies)
 - [TODOs](#todos)
+- [Bugs](#bugs)
 - [License](#license)
 
 ## Features
