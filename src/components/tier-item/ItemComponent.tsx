@@ -1,35 +1,25 @@
-import { useState } from 'react';
 import { TierItem } from '../../types/tier-types';
-import { useTierStore } from '@/hooks/useTierStore';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { ItemActions } from './ItemActions';
 
 interface ItemComponentProps {
   item: TierItem;
+  isOverlay?: boolean;
 }
 
 export function ItemComponent(props: ItemComponentProps) {
-  const [editingTitle, setEditingTitle] = useState<boolean>(false);
-  const updateItemTitle = useTierStore.use.updateItem();
-
   const { setNodeRef, attributes, listeners, transform, transition, isDragging } = useSortable({
     id: props.item.id,
     data: {
       type: 'Item',
       item: props.item,
     },
-    disabled: editingTitle,
   });
 
   const sortableStyle: React.CSSProperties = {
     transition,
     transform: CSS.Transform.toString(transform),
-  };
-
-  const handleUpdateItemTitle = (newTitle: string) => {
-    updateItemTitle(props.item.id, {
-      title: newTitle,
-    });
   };
 
   if (isDragging) {
@@ -50,27 +40,15 @@ export function ItemComponent(props: ItemComponentProps) {
       style={sortableStyle}
       {...attributes}
       {...listeners}
-      onClick={() => !editingTitle && setEditingTitle((v) => !v)}
-      className="flex size-[6.5rem] cursor-grab items-center  justify-center bg-zinc-700 text-white">
-      {editingTitle ? (
-        <input
-          type={'text'}
-          className="flex h-fit w-full rounded-md
-            bg-transparent p-0 text-center shadow-sm
-            transition-colors focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-          value={props.item.title}
-          onChange={(e) => handleUpdateItemTitle(e.target.value)}
-          autoFocus
-          onBlur={() => setEditingTitle(false)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') setEditingTitle(false);
-          }}
-        />
-      ) : (
-        <p className="max-h-[6.5rem] max-w-[6.5rem] text-pretty break-words text-center">
-          {props.item.title}
-        </p>
-      )}
+      className="group relative flex size-[6.5rem] cursor-grab flex-col items-center bg-zinc-700 text-white">
+      <div className="flex grow items-center">
+        <div className="group-hover:opacity-40">
+          <p className="line-clamp-4 max-w-[6.25rem]  break-words text-center">
+            {props.item.title}
+          </p>
+        </div>
+      </div>
+      {!props.isOverlay && <ItemActions item={props.item} />}
     </div>
   );
 }

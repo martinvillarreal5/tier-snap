@@ -42,7 +42,7 @@ export function TierContainer() {
             {activeRow && (
               <RowContainer key={activeRow.id} row={activeRow} items={getRowItems(activeRow.id)} />
             )}
-            {activeItem && <ItemComponent key={activeItem.id} item={activeItem} />}
+            {activeItem && <ItemComponent key={activeItem.id} item={activeItem} isOverlay />}
           </DragOverlayPortal>
         </DndContext>
         <TierTooling />
