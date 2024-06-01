@@ -1,37 +1,27 @@
 # TierSnap
 
-Welcome to TierSnap! This project is a web application built with Vite, React, and DndKit. It allows users to create and customize tier lists by dragging and dropping items into different tiers.
+Welcome to TierSnap! This project is a web application built with Vite and React. It allows users to create and customize tier lists by dragging and dropping items into different tiers.
 
 ## Table of Contents
 
 - [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
+- [Technologies](#technologies)
+- [TODOs](#todos)
 - [License](#license)
-- [TODO](#todo)
 
 ## Features
 
 - **Drag and Drop**: Easily drag and drop items into different tiers using DndKit.
 - **Customizable Tiers**: Add, remove, and rename tiers to suit your needs.
-- **Responsive Design**: The application is fully responsive and works on all devices.
 - **Fast and Lightweight**: Built with Vite for a fast development experience and optimized performance.
 
-## TODO
+## Technologies
+
+- todo
+
+## TODOs
 
 Here are some planned features and improvements for TierSnap:
-
-### Fixes
-
-- [x] Drag overlay not takig the same space as row when there is more than 1 row of items
-- [x] If only one row, with many items, it grows height when dragged
-- [x] Row title text doesnt wrap
-- [ ] Cant drag row to end if it has many items.
-- [ ] Create row input doesnt clear when creating row
-- [ ] Weird crash when dragging item over rows with many items
-
-~~- [ ] Item title input its buggy as fuck~~ removed title input
 
 ### Features
 
@@ -44,15 +34,32 @@ Here are some planned features and improvements for TierSnap:
 - [ ] Presets
   - [ ] Reset to preset button modal
   - [ ] Create custom presets
+    - [ ] Create custom presets
 - [ ] Row customization button modal
 - [ ] Spotify Integration
 - [ ] Create download tier image button
 
 ### Maybe
 
+- [ ] Easter eggs
+- [ ] Special effects options
 - [ ] Create export/inport tier as json button
 
-### Probably Not
+### Probably Never
+
+- [ ] Accounts and database persistance
+- [ ] Live sessions
+
+## Bugs
+
+Here are some known bugs
+
+- ~~ Drag overlay not takig the same space as row when there is more than 1 row of items~~
+- ~~ If only one row, with many items, it grows height when dragged~~
+- ~~ Row title text doesnt wrap~~
+- Cant drag row to end if it has many items.
+- Create row input doesnt clear when creating row
+- Weird crash when dragging item over rows with many items
 
 ## License
 

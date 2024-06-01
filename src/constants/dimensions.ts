@@ -5,7 +5,7 @@ export abstract class Dimensions {
   static readonly ITEM_SIZE = 6.5;
   static readonly ROW_PAD = 0.25;
   static readonly HEAD_BASE_SIZE = this.ITEM_SIZE + this.ROW_PAD * 2;
-  static readonly ACTIONS_WIDTH = 2.5;
+  static readonly ROW_ACTIONS_WIDTH = 2.5;
 
   static calculateRowHeight = (totalRowItems: number): number => {
     //If no items: return row head base height
@@ -29,7 +29,7 @@ export abstract class Dimensions {
     return (
       this.HEAD_BASE_SIZE + // w of row head
       this.calculateRowItemsWidth() + // total w of row items
-      this.ACTIONS_WIDTH
+      this.ROW_ACTIONS_WIDTH
     );
   };
 
