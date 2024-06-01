@@ -35,7 +35,7 @@ export function ItemOptionsModalButton(props: ItemOptionsModalButtonProps) {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="flex items-center justify-center">
-          <DialogTitle className="text-lg text-white">Options</DialogTitle>
+          <DialogTitle className="text-lg text-white">Item Options</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col items-center justify-center gap-6">
           <div className="flex flex-col items-center justify-center gap-2">
