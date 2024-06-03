@@ -1,37 +1,23 @@
+import { TierRow } from '@/types/tier-types';
+import { RowActions } from './RowActions';
+
 interface RowHeadProps {
-  title?: string;
-  color: string;
-  setEditingTitle: React.Dispatch<React.SetStateAction<boolean>>;
-  editingTitle: boolean;
-  handleUpdateRowTitle: (value: string) => void;
+  row: TierRow;
+  isOverlay?: boolean;
 }
 
 export function RowHead(props: RowHeadProps) {
-  return props.editingTitle ? (
+  return (
     <div
-      className="flex h-full min-h-28 w-28 shrink-0 items-center justify-center text-black"
-      style={{ backgroundColor: props.color }}>
-      <input
-        type={'text'}
-        className="flex h-fit w-full rounded-md border-none
-         bg-transparent p-0 text-center
-         transition-colors focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-        value={props.title}
-        onChange={(e) => props.handleUpdateRowTitle(e.target.value)}
-        autoFocus
-        onBlur={() => props.setEditingTitle(false)}
-        onKeyDown={(e) => {
-          if (e.key !== 'Enter') return;
-          props.setEditingTitle(false);
-        }}
-      />
-    </div>
-  ) : (
-    <div
-      onClick={() => props.setEditingTitle(true)}
-      className="flex h-full min-h-28 w-28 shrink-0 cursor-grab items-center justify-center text-black"
-      style={{ backgroundColor: props.color }}>
-      {props.title}
+      className="group relative flex h-full min-h-28 w-28 shrink-0 cursor-grab flex-col 
+      items-center text-black"
+      style={{ backgroundColor: props.row.color }}>
+      <div className="flex grow items-center">
+        <div className="group-hover:opacity-40">
+          <p className="line-clamp-4 max-w-[6.25rem] break-words text-center">{props.row.title}</p>
+        </div>
+      </div>
+      {!props.isOverlay && <RowActions row={props.row} />}
     </div>
   );
 }

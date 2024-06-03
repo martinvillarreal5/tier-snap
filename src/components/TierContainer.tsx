@@ -40,7 +40,12 @@ export function TierContainer() {
           </SortableContext>
           <DragOverlayPortal>
             {activeRow && (
-              <RowContainer key={activeRow.id} row={activeRow} items={getRowItems(activeRow.id)} />
+              <RowContainer
+                key={activeRow.id}
+                row={activeRow}
+                items={getRowItems(activeRow.id)}
+                isOverlay
+              />
             )}
             {activeItem && <ItemComponent key={activeItem.id} item={activeItem} isOverlay />}
           </DragOverlayPortal>

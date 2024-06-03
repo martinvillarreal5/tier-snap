@@ -1,9 +1,11 @@
 import { useTierStore } from '@/hooks/useTierStore';
-import { Plus as PlusIcon, Settings as SettingsIcon, Trash2 as TrashIcon } from 'lucide-react';
+import { Plus as PlusIcon, Trash2 as TrashIcon } from 'lucide-react';
 import { Button } from '../ui/button';
+import { RowUpdateModalButton } from '../tooling/RowUpdateModalButton';
+import { TierRow } from '@/types/tier-types';
 
 interface RowActionsProp {
-  rowId: string;
+  row: TierRow;
 }
 
 export function RowActions(props: RowActionsProp) {
@@ -12,19 +14,23 @@ export function RowActions(props: RowActionsProp) {
 
   const handleCreateItemInRow = () => {
     createItemInRow({
-      rowId: props.rowId,
+      rowId: props.row.id,
     });
   };
 
+  const handleRemoveRow = () => {
+    removeRow(props.row.id);
+  };
+
   return (
-    <div className="flex w-10 flex-col items-end gap-1 p-1 text-white">
-      <Button title="add item" size={'iconSm'} onClick={() => handleCreateItemInRow()}>
+    <div
+      className="absolute z-10 flex w-full flex-row justify-between gap-1 p-1
+     text-white opacity-0 duration-300 group-hover:opacity-100">
+      <Button title="add item" size={'iconSm'} onClick={handleCreateItemInRow}>
         <PlusIcon />
       </Button>
-      <Button title="row settings" size={'iconSm'}>
-        <SettingsIcon />
-      </Button>
-      <Button title="delete row" size={'iconSm'} onClick={() => removeRow(props.rowId)}>
+      <RowUpdateModalButton row={props.row} />
+      <Button title="delete row" size={'iconSm'} onClick={handleRemoveRow}>
         <TrashIcon />
       </Button>
     </div>
