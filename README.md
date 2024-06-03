@@ -26,17 +26,23 @@ Here are some planned features and improvements for TierSnap:
 
 ### Features
 
+- [x] Row Actions
+  - [x] Add Item fast button
+  - [x] Delete button
+  - [x] Settings button
+    - [x] With title input
+    - [x] With color input
 - [ ] Item actions
-  - [x] Add item delete button
-  - [x] Add item settings button
+  - [x] Delete button
+  - [x] Settings button
     - [x] With title input
     - [ ] With image input to put as item background
     - [ ] With color input
+- [ ] Item bag to put new items
 - [ ] Presets
   - [ ] Reset to preset button modal
   - [ ] Create custom presets
     - [ ] Create custom presets
-- [ ] Row customization button modal
 - [ ] Spotify Integration
 - [ ] Create download tier image button
 
