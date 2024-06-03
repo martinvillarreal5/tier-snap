@@ -55,12 +55,12 @@ Here are some planned features and improvements for TierSnap:
 
 Here are some known bugs
 
-- ~~ Drag overlay not takig the same space as row when there is more than 1 row of items~~
-- ~~ If only one row, with many items, it grows height when dragged~~
-- ~~ Row title text doesnt wrap~~
+- ~~Drag overlay not takig the same space as row when there is more than 1 row of items~~
+- ~~If only one row, with many items, it grows height when dragged~~
+- Row title text doesnt wrap
 - Cant drag row to end if it has many items.
 - Create row input doesnt clear when creating row
-- Weird crash when dragging item over rows with many items
+- Weird ocacional crash when dragging item over rows with many items
 
 ## License
 
