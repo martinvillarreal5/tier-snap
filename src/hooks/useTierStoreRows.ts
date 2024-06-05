@@ -18,5 +18,6 @@ export function useStoreRows() {
     rowsIds,
     rows,
     getRowItems,
+    items,
   };
 }

@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { useTierStore } from './useTierStore';
 import { arrayMove } from '@dnd-kit/sortable';
 
-export function useTierRowDrag() {
+export function useTierDnD() {
   const [activeRow, setActiveRow] = useState<TierRow | null>(null);
   const [activeItem, setActiveItem] = useState<TierItem | null>(null);
 
@@ -75,11 +75,15 @@ export function useTierRowDrag() {
 
     const activeId = active.id;
     const overId = over.id;
+    const overType = over.data.current?.type as string;
 
     if (activeId === overId) return;
 
     const isActiveAnItem = active.data.current?.type === 'Item';
-    const isOverAnItem = over.data.current?.type === 'Item';
+
+    const isOverAnItem = overType === 'Item';
+    const isOverARow = overType === 'Row';
+    const isOverBag = overId === 'BAG';
 
     if (!isActiveAnItem) return;
 
@@ -87,18 +91,18 @@ export function useTierRowDrag() {
     if (isActiveAnItem && isOverAnItem) {
       const activeIndex = items.findIndex((t) => t.id === activeId);
       const overIndex = items.findIndex((t) => t.id === overId);
+
       if (items[activeIndex].rowId != items[overIndex].rowId) {
-        // Fix introduced after video recording
         items[activeIndex].rowId = items[overIndex].rowId;
         setItems(arrayMove(items, activeIndex, overIndex - 1));
       }
+
       setItems(arrayMove(items, activeIndex, overIndex));
     }
 
-    const isOverAColumn = over.data.current?.type === 'Row';
-
-    // Dropping an Item over a row
-    if (isActiveAnItem && isOverAColumn) {
+    // Dropping an Item over a row or Bag
+    if (isActiveAnItem && (isOverARow || isOverBag)) {
+      console.log('dragging over container: ' + overId);
       const activeIndex = items.findIndex((t) => t.id === activeId);
 
       items[activeIndex].rowId = overId as string;

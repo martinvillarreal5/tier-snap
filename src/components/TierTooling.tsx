@@ -6,7 +6,7 @@ import { Button } from './ui/button';
 export function TierTooling() {
   const reset = useTierStore.use.reset();
   return (
-    <div className="flex grow flex-col items-center gap-2 bg-zinc-900 p-4 text-white">
+    <div className="flex w-full flex-col items-center gap-2 bg-zinc-900 p-4 text-white">
       <Button type="button" onClick={() => reset()} variant="secondary" className="gap-2">
         <TriangleAlertIcon className="text-[#ff7f7f] " /> Reset
       </Button>

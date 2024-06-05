@@ -1,22 +1,29 @@
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { TierTableContainer } from './TierTable';
-import { RowContainer } from './tier-row/RowContainer';
+import { TierTable } from './TierTable';
+import { RowContainer } from './tier-row/RowComponent';
 import { TierHeader } from './TierHeader';
 import { TierTooling } from './TierTooling';
-import { DndContext } from '@dnd-kit/core';
+import { DndContext, pointerWithin } from '@dnd-kit/core';
 import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 import { DragOverlayPortal } from './common/DragOverlayPortal';
 import { useTierStore } from '@/hooks/useTierStore';
-import { useTierRowDrag } from '@/hooks/useRowDrag';
+import { useTierDnD } from '@/hooks/useTierDnD';
 import { useStoreRows } from '@/hooks/useTierStoreRows';
 import { ItemComponent } from './tier-item/ItemComponent';
+import { useMemo } from 'react';
+import { TierBag } from './TierBag';
 
 export function TierContainer() {
-  const { rows, rowsIds, getRowItems } = useStoreRows();
+  const { items, rows, rowsIds, getRowItems } = useStoreRows();
+
+  const bagItemsIds = useMemo(
+    () => items.filter((i) => i.rowId == 'BAG').map((item) => item.id),
+    [items]
+  );
 
   const tableTitle = useTierStore.use.title();
 
-  const { onDragEnd, onDragStart, onDragOver, sensors, activeRow, activeItem } = useTierRowDrag();
+  const { onDragEnd, onDragStart, onDragOver, sensors, activeRow, activeItem } = useTierDnD();
 
   return (
     <>
@@ -30,14 +37,27 @@ export function TierContainer() {
             //restrictToVerticalAxis,
             restrictToWindowEdges,
           ]}
+          collisionDetection={pointerWithin}
           sensors={sensors}>
           <SortableContext items={rowsIds} strategy={verticalListSortingStrategy}>
-            <TierTableContainer>
+            <TierTable>
               {rows.map((row) => (
                 <RowContainer key={row.id} row={row} items={getRowItems(row.id)} />
               ))}
-            </TierTableContainer>
+            </TierTable>
           </SortableContext>
+          <div className="flex w-full flex-col gap-4">
+            <TierTooling />
+            <TierBag>
+              <SortableContext items={bagItemsIds}>
+                {items
+                  .filter((i) => i.rowId == 'BAG')
+                  .map((item) => (
+                    <ItemComponent key={item.id} item={item} />
+                  ))}
+              </SortableContext>
+            </TierBag>
+          </div>
           <DragOverlayPortal>
             {activeRow && (
               <RowContainer
@@ -50,7 +70,6 @@ export function TierContainer() {
             {activeItem && <ItemComponent key={activeItem.id} item={activeItem} isOverlay />}
           </DragOverlayPortal>
         </DndContext>
-        <TierTooling />
       </div>
     </>
   );
