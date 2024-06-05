@@ -22,7 +22,6 @@ export function ItemOptionsModalButton(props: ItemOptionsModalButtonProps) {
   const updateItem = useTierStore.use.updateItem();
 
   const handleUpdateItemTitle = (value: string) => {
-    console.log('value: ', value);
     updateItem(props.item.id, { title: value });
   };
 

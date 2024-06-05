@@ -29,7 +29,7 @@ export function ItemComponent(props: ItemComponentProps) {
         style={sortableStyle}
         {...attributes}
         {...listeners}
-        className="flex size-[6.5rem] cursor-grab items-center justify-center border border-red-400"
+        className="flex size-[6.5rem] cursor-grab items-center justify-center border"
       />
     );
   }

@@ -102,7 +102,6 @@ export function useTierDnD() {
 
     // Dropping an Item over a row or Bag
     if (isActiveAnItem && (isOverARow || isOverBag)) {
-      console.log('dragging over container: ' + overId);
       const activeIndex = items.findIndex((t) => t.id === activeId);
 
       items[activeIndex].rowId = overId as string;
