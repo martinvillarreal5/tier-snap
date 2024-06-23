@@ -1,7 +1,7 @@
 import { useTierStore } from '@/hooks/useTierStore';
 import { Trash2 as TrashIcon } from 'lucide-react';
 import { Button } from '../ui/button';
-import { TierItem } from '@/types/tier-types';
+import { TierItem } from '@/types/tier';
 import { ItemOptionsModalButton } from './ItemOptionsModalButton';
 
 interface ItemActionsProp {

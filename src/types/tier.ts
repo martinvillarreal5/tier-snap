@@ -12,11 +12,6 @@ export interface TierItem extends BaseItem {
   id: string;
 }
 
-export interface TierPreset {
-  title: string;
-  rows: BaseRow[];
-}
-
 export interface BaseRow {
   color: string;
   title?: string;

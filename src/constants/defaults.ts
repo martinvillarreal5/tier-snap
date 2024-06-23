@@ -1,5 +1,5 @@
 import { TierColor } from '@/types/tier-colors';
-import type { TierConfig, TierPalleteOption } from '../types/tier-types';
+import type { TierConfig, TierPalleteOption } from '../types/tier';
 
 export const defaultColorOptions: DeepReadonly<TierPalleteOption[]> = [
   { color: TierColor.RED },

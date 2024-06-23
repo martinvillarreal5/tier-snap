@@ -11,7 +11,7 @@ import { SettingsIcon } from 'lucide-react';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Button } from '../ui/button';
-import { TierItem } from '@/types/tier-types';
+import { TierItem } from '@/types/tier';
 
 interface ItemOptionsModalButtonProps {
   item: TierItem;

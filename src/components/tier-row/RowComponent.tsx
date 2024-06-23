@@ -1,5 +1,5 @@
 import { SortableContext, useSortable } from '@dnd-kit/sortable';
-import { TierItem, type TierRow } from '../../types/tier-types';
+import { TierItem, type TierRow } from '../../types/tier';
 import { RowHead } from './RowHead';
 import { CSS } from '@dnd-kit/utilities';
 import { useMemo } from 'react';

@@ -1,5 +1,5 @@
-import type { TierPreset } from '@/types/tier-types';
 import { TierColor } from '@/types/tier-colors';
+import { TierPreset } from '@/types/tier-preset';
 
 export const songsPreset: DeepReadonly<TierPreset> = {
   title: 'Album Songs',

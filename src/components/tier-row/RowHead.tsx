@@ -1,4 +1,4 @@
-import { TierRow } from '@/types/tier-types';
+import { TierRow } from '@/types/tier';
 import { RowActions } from './RowActions';
 
 interface RowHeadProps {

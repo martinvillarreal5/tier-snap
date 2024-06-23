@@ -13,7 +13,7 @@ import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { defaultColorOptions } from '@/constants/defaults';
 import { Button } from '../ui/button';
-import { TierRow } from '@/types/tier-types';
+import { TierRow } from '@/types/tier';
 
 interface RowUpdateModalButtonProps {
   row: TierRow;

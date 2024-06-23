@@ -2,7 +2,7 @@ import { useTierStore } from '@/hooks/useTierStore';
 import { Plus as PlusIcon, Trash2 as TrashIcon } from 'lucide-react';
 import { Button } from '../ui/button';
 import { RowUpdateModalButton } from '../tooling/RowUpdateModalButton';
-import { TierRow } from '@/types/tier-types';
+import { TierRow } from '@/types/tier';
 
 interface RowActionsProp {
   row: TierRow;

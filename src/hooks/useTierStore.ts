@@ -1,11 +1,4 @@
-import type {
-  TierPreset,
-  TierItem,
-  TierRow,
-  TierConfig,
-  BaseRow,
-  BaseItem,
-} from '@/types/tier-types';
+import type { TierPreset, TierItem, TierRow, TierConfig, BaseRow, BaseItem } from '@/types/tier';
 import { createSelectors } from '@/utils/createSelectors';
 import { defaultTierConfig } from '@/constants/defaults';
 import { generateRowItem, generateRow, generateTierRows } from '@/utils/generators';

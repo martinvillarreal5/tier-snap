@@ -1,4 +1,4 @@
-import { TierItem } from '../../types/tier-types';
+import { TierItem } from '../../types/tier';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { ItemActions } from './ItemActions';

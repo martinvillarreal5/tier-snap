@@ -1,20 +1,26 @@
-import type { BaseItem, BaseRow, TierItem, TierRow } from '@/types/tier-types';
-import { defaultPreset } from '../constants/tier-presets';
+import type { BaseItem, BaseRow, TierItem, TierRow } from '@/types/tier';
 import { TierColor } from '@/types/tier-colors';
+import { defaultPreset } from '../constants/tier-presets';
 
 export const generateId = () => {
   return crypto.randomUUID();
 };
 
+/**
+ * Generate a new item. If no rowId is provided "BAG" id will be used.
+ */
 export const generateRowItem = (itemInfo: Partial<BaseItem>): TierItem => {
   return {
     id: generateId(),
     title: itemInfo.title ?? '',
-    rowId: itemInfo.rowId ?? 'deck',
+    rowId: itemInfo.rowId ?? 'BAG',
   };
 };
 
-export const generateTierRows = (presetRows?: DeepReadonly<BaseRow[]>): TierRow[] => {
+/**
+ * Generate new tier rows based on Preset rows
+ */
+export const generateTierRows = (presetRows?: DeepReadonly<BaseRow>[]): TierRow[] => {
   const rows = presetRows ? [...presetRows] : [...defaultPreset.rows];
 
   return rows.map((presetRow) => ({ ...presetRow, id: generateId() }));

@@ -1,4 +1,4 @@
-import { TierItem, TierRow } from '@/types/tier-types';
+import { TierItem, TierRow } from '@/types/tier';
 import {
   DragEndEvent,
   DragOverEvent,
