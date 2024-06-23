@@ -26,15 +26,17 @@ export interface GetAlbumResponseImage {
   width: number;
 }
 
-export interface SpotifyAlbumResponseTracks {
+export interface SpotifyAlbumResponseTracksParams {
+  /**The maximum number of items in the response (as set in the query or by default). */
+  limit: number /**The offset of the items returned (as set in the query or by default) */;
+  offset: number;
+}
+
+export interface SpotifyAlbumResponseTracks extends SpotifyAlbumResponseTracksParams {
   /**A link to the Web API endpoint returning the full result of the request */
   href: string; //'https://api.spotify.com/v1/me/shows?offset=0&limit=20';
-  /**The maximum number of items in the response (as set in the query or by default). */
-  limit: number;
   /**URL to the next page of items. ( null if none) */
   next: string | null; //'https://api.spotify.com/v1/me/shows?offset=1&limit=1';
-  /**The offset of the items returned (as set in the query or by default) */
-  offset: number;
   /**URL to the previous page of items. ( null if none) */
   previous: string | null; //'https://api.spotify.com/v1/me/shows?offset=1&limit=1';
   /**The total number of items available to return. */

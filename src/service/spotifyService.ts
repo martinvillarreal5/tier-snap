@@ -1,4 +1,9 @@
-import { SpotifyAlbumResponse, SpotifyTokenObject } from '@/types/spotify';
+import {
+  SpotifyAlbumResponse,
+  SpotifyAlbumResponseTracks,
+  SpotifyAlbumResponseTracksParams,
+  SpotifyTokenObject,
+} from '@/types/spotify';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -34,7 +39,65 @@ const getAccessToken = async (): Promise<string> => {
 const getAlbumInfo = async (albumId: string): Promise<SpotifyAlbumResponse> => {
   const token = await getAccessToken();
 
-  const response = await fetch('https://api.spotify.com/v1/albums/' + albumId, {
+  const response = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Unable to Fetch Data`);
+  }
+
+  const data = (await response.json()) as SpotifyAlbumResponse;
+
+  await populateAlbumTracksIfNeeded(data);
+
+  return data;
+};
+
+const populateAlbumTracksIfNeeded = async (album: SpotifyAlbumResponse) => {
+  let offset = album.tracks.limit;
+  const limit = 50;
+  const totalItems = album.tracks.total;
+  const tracksItems = album.tracks.items;
+
+  if (tracksItems.length >= totalItems) {
+    //Limit of base album request is greater or equal than total items, so no further requests are needed
+    return;
+  }
+
+  while (tracksItems.length < totalItems) {
+    const newTracks = await getAlbumTracks(album.id, {
+      offset: offset,
+      limit: limit,
+    });
+    offset = offset + limit;
+    tracksItems.push(...newTracks.items);
+  }
+};
+
+const getAlbumTracks = async (
+  albumId: string,
+  params?: Partial<SpotifyAlbumResponseTracksParams>
+): Promise<SpotifyAlbumResponseTracks> => {
+  const url = new URL(`https://api.spotify.com/v1/albums/${albumId}/tracks`);
+
+  // Create a URLSearchParams object
+  const searchParams = new URLSearchParams();
+
+  // Add parameters to the URLSearchParams object if they are defined
+  if (params?.offset) {
+    searchParams.append('offset', params.offset.toString());
+  }
+  if (params?.limit) {
+    searchParams.append('limit', params.limit.toString());
+  }
+
+  const token = await getAccessToken();
+
+  const response = await fetch(url, {
     method: 'GET',
     headers: {
       Authorization: 'Bearer ' + token,
@@ -48,5 +111,5 @@ const getAlbumInfo = async (albumId: string): Promise<SpotifyAlbumResponse> => {
     );
   }
 
-  return (await response.json()) as SpotifyAlbumResponse;
+  return (await response.json()) as SpotifyAlbumResponseTracks;
 };
