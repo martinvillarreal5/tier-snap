@@ -1,10 +1,11 @@
-import type { TierPreset, TierItem, TierRow, TierConfig, BaseRow, BaseItem } from '@/types/tier';
+import type { TierItem, TierRow, TierConfig, BaseRow, BaseItem } from '@/types/tier';
 import { createSelectors } from '@/utils/createSelectors';
 import { defaultTierConfig } from '@/constants/defaults';
 import { generateRowItem, generateRow, generateTierRows } from '@/utils/generators';
 import { defaultPreset } from '@/constants/tier-presets';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
+import { TierPreset } from '@/types/tier-preset';
 
 export interface TierStoreState {
   rows: TierRow[];

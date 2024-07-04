@@ -20,7 +20,7 @@ export const generateRowItem = (itemInfo: Partial<BaseItem>): TierItem => {
 /**
  * Generate new tier rows based on Preset rows
  */
-export const generateTierRows = (presetRows?: DeepReadonly<BaseRow>[]): TierRow[] => {
+export const generateTierRows = (presetRows?: DeepReadonlyArray<BaseRow>): TierRow[] => {
   const rows = presetRows ? [...presetRows] : [...defaultPreset.rows];
 
   return rows.map((presetRow) => ({ ...presetRow, id: generateId() }));
