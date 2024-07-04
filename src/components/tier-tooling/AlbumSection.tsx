@@ -3,15 +3,16 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import SpotifyService from '@/service/spotifyService';
 import { useTierStore } from '@/hooks/useTierStore';
+import { SpotifyAlbumResponse } from '@/types/spotify';
 
 export function AlbumSection() {
   const createItemInRow = useTierStore.use.createItemInRow();
   const [albumURL, setAlbumURL] = useState<string>('');
-  const [albumTitle, setAlbumTitle] = useState<string>('');
+  const [album, setAlbum] = useState<SpotifyAlbumResponse>();
 
   const handleGenerateAlbumSongs = async () => {
     const album = await SpotifyService.getAlbumInfo(albumURL);
-    setAlbumTitle(album.name);
+    setAlbum(album);
 
     album.tracks.items.forEach((track) =>
       createItemInRow({
@@ -23,7 +24,8 @@ export function AlbumSection() {
 
   return (
     <>
-      {albumTitle.length > 0 && <h3 className="text-2xl text-white">{albumTitle}</h3>}
+      {album?.images[2] && <img src={album?.images[0].url} className="size-64" />}
+      {album && album.name.length > 0 && <h3 className="text-2xl text-white">{album.name}</h3>}
       <Input
         placeholder="Spotify album link here"
         type="text"

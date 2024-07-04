@@ -2,7 +2,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { TierTable } from './TierTable';
 import { RowContainer } from './tier-row/RowComponent';
 import { TierHeader } from './TierHeader';
-import { TierTooling } from './TierTooling';
+import { TierTooling } from './tier-tooling/TierTooling';
 import { DndContext, pointerWithin } from '@dnd-kit/core';
 import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 import { DragOverlayPortal } from './common/DragOverlayPortal';

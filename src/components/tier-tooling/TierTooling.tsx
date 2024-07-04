@@ -1,6 +1,6 @@
-import { NewRowModalButton } from './tooling/NewRowModalButton';
-import { AlbumSection } from './tooling/AlbumSection';
-import { ResetTierButton } from './tooling/ResetTierButton';
+import { NewRowModalButton } from './NewRowModalButton';
+import { AlbumSection } from './AlbumSection';
+import { ResetTierButton } from './ResetTierButton';
 
 export function TierTooling() {
   return (
