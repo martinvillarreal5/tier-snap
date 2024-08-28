@@ -3,5 +3,5 @@ interface TierTableProps {
 }
 
 export function TierTable(props: TierTableProps) {
-  return <div className="flex w-fit flex-col gap-1">{props.children}</div>;
+  return <div className="flex w-fit flex-col gap-[0.125rem] bg-zinc-950">{props.children}</div>;
 }
