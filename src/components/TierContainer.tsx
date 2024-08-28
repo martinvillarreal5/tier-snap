@@ -27,7 +27,7 @@ export function TierContainer() {
 
   return (
     <>
-      <TierHeader>{tableTitle}</TierHeader>
+      {/*<TierHeader>{tableTitle}</TierHeader>*/}
       <div className="flex flex-row gap-4">
         <DndContext
           onDragStart={onDragStart}
